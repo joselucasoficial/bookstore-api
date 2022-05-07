@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class livro implements Serializable {
+public class Livro implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -20,14 +22,16 @@ public class livro implements Serializable {
 	private String nome_autor;
 	private String texto;
 
+	@ManyToOne
+	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
 
-	public livro() {
+	public Livro() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public livro(Integer id, String titulo, String nome_autor, String texto, Categoria categoria) {
+	public Livro(Integer id, String titulo, String nome_autor, String texto, Categoria categoria) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -89,7 +93,7 @@ public class livro implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		livro other = (livro) obj;
+		Livro other = (Livro) obj;
 		return Objects.equals(id, other.id);
 	}
 
